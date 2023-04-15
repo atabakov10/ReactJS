@@ -1,6 +1,5 @@
 export default function Header() {
     return (  <div className="container-fluid">
-    {/* <!-- Start: Header --> */}
     <div className="row hero-header" id="home">
       <div className="col-md-7">
         <img src="img/meetup-logo.png" className="logo"/>
@@ -14,6 +13,5 @@ export default function Header() {
         <img src="img/rocket.png" className="rocket animated bounce"/>
       </div>
     </div>
-    {/* <!-- End: Header --> */}
   </div>)
 }
