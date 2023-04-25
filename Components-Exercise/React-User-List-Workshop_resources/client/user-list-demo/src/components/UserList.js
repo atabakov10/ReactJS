@@ -8,6 +8,7 @@ import CreateUserPage from "./CreateUserPage";
 
 export default function UserList({
     users,
+    onUserCreateSubmit,
 }) {
     const [selectedUser, setSelectedUser] = useState(null)
     const [showAddUser, setShowAddUser] = useState(false)
@@ -27,10 +28,15 @@ export default function UserList({
         setShowAddUser(true);
     }
 
+    const onUserCreateSubmitHandler = (e) => {
+        onUserCreateSubmit(e);
+        setShowAddUser(false);
+    }
+
     return (
         <>
             {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
-            {showAddUser && <CreateUserPage onCloseHandler={onCloseHandler} />}
+            {showAddUser && <CreateUserPage onCloseHandler={onCloseHandler} onUserCreateSubmit={onUserCreateSubmitHandler} />}
             <div className="table-wrapper">
 
                 {/* <div className="loading-shade">

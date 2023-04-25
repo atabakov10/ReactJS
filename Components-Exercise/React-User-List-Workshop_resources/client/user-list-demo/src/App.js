@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 function App() {
 
     const [users, setUsers] = useState([]);
-
+    
     useEffect(() => {
         userService.getAll()
             .then(setUsers)
@@ -19,6 +19,18 @@ function App() {
                 console.log('Error');
             });
     }, [])
+
+    const onUserCreateSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData);
+        
+        const createdUser = await userService.create(data);
+
+        setUsers(state => [...state, createdUser]);
+    }
+
     return (
         <>
             <Header />
@@ -26,7 +38,7 @@ function App() {
                 <section className="card users-container">
                     <Search />
 
-                    <UserList users={users} />
+                    <UserList users={users} onUserCreateSubmit={onUserCreateSubmit} />
 
                 </section>
             </main>

@@ -1,5 +1,6 @@
 export default function CreateUserPage({
     onCloseHandler,
+    onUserCreateSubmit
 }) {
     return (<div className="overlay">
         <div className="backdrop"></div>
@@ -16,7 +17,7 @@ export default function CreateUserPage({
                         </svg>
                     </button>
                 </header>
-                <form>
+                <form onSubmit={onUserCreateSubmit}>
                     <div className="form-row">
                         <div className="form-group">
                             <label htmlFor="firstName">First name</label>
