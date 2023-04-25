@@ -4,11 +4,13 @@ import * as userService from "../services/userService";
 
 import { useState } from "react";
 import UserDetails from "./UserDetails";
+import CreateUserPage from "./CreateUserPage";
 
 export default function UserList({
     users,
 }) {
     const [selectedUser, setSelectedUser] = useState(null)
+    const [showAddUser, setShowAddUser] = useState(false)
 
     const onInfoClick = async (userId) => {
         const user = await userService.getOne(userId)
@@ -17,12 +19,18 @@ export default function UserList({
     };
 
     function onCloseHandler() {
-        setSelectedUser(null)
+        setSelectedUser(null);
+        setShowAddUser(false);
+    }
+
+    const onUserAddClick = () => {
+        setShowAddUser(true);
     }
 
     return (
         <>
-        {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
+            {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
+            {showAddUser && <CreateUserPage onCloseHandler={onCloseHandler} />}
             <div className="table-wrapper">
 
                 {/* <div className="loading-shade">
@@ -142,10 +150,12 @@ export default function UserList({
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => <User key={user._id} {...user} onInfoClick={onInfoClick}/>)}
+                        {users.map(user => <User key={user._id} {...user} onInfoClick={onInfoClick} />)}
                     </tbody>
                 </table>
             </div>
+
+            <button className="btn-add btn" onClick={onUserAddClick}>Add new user</button>
         </>
     )
 }
