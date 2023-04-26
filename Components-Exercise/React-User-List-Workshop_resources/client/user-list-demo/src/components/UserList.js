@@ -4,24 +4,40 @@ import * as userService from "../services/userService";
 
 import { useState } from "react";
 import UserDetails from "./UserDetails";
+import UserDelete from "./UserDelete";
 import CreateUserPage from "./CreateUserPage";
 
 export default function UserList({
     users,
     onUserCreateSubmit,
+    onUserDeleteClick,
+    onUserUpdateSubmit,
 }) {
     const [selectedUser, setSelectedUser] = useState(null)
     const [showAddUser, setShowAddUser] = useState(false)
+    const [showEditUser, setShowEditUser] = useState(null)
+    const [deleteUser, setShowDeleteUser] = useState(null)
 
     const onInfoClick = async (userId) => {
-        const user = await userService.getOne(userId)
+        const userInfo = await userService.getOne(userId)
 
-        setSelectedUser(user);
+        setSelectedUser(userInfo);
     };
+
+    function onDeleteClick(userId) {
+        setShowDeleteUser(userId);
+    }
+
+    const onDeleteHandler = () => {
+        onUserDeleteClick(deleteUser);
+        onCloseHandler();
+    }
 
     function onCloseHandler() {
         setSelectedUser(null);
         setShowAddUser(false);
+        setShowDeleteUser(null);
+        setShowEditUser(null)
     }
 
     const onUserAddClick = () => {
@@ -33,10 +49,23 @@ export default function UserList({
         setShowAddUser(false);
     }
 
+    const onUserUpdateSubmitHandler = (e, userId) => {
+        onUserUpdateSubmit(e, userId);
+        setShowEditUser(null)
+    }
+
+    const onEditClick = async (userId) => {
+        const user = await userService.getOne(userId);
+
+        setShowEditUser(user)
+    };
+
     return (
         <>
             {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
             {showAddUser && <CreateUserPage onCloseHandler={onCloseHandler} onUserCreateSubmit={onUserCreateSubmitHandler} />}
+            {deleteUser && <UserDelete onCloseHandler={onCloseHandler} onDeleteHandler={onDeleteHandler} />}
+            {showEditUser && <CreateUserPage user={showEditUser} onCloseHandler={onCloseHandler} onUserCreateSubmit={onUserUpdateSubmitHandler}/>}
             <div className="table-wrapper">
 
                 {/* <div className="loading-shade">
@@ -45,7 +74,7 @@ export default function UserList({
                     <svg
                         aria-hidden="true"
                         focusable="false"
-                        data-prefix="fas"
+                        data-prefix="fas" 
                         data-icon="triangle-exclamation"
                         className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
                         role="img"
@@ -156,7 +185,15 @@ export default function UserList({
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => <User key={user._id} {...user} onInfoClick={onInfoClick} />)}
+                        {users.map(user => 
+                            <User 
+                            {...user} 
+                            key={user._id}
+                            onInfoClick={onInfoClick} 
+                            onDeleteClick={onDeleteClick} 
+                            onEditClick={onEditClick}
+                            />
+                        )}
                     </tbody>
                 </table>
             </div>
