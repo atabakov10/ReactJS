@@ -10,23 +10,17 @@ function App() {
         }, 3000)
     },[]);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.traget);
-
-        const username = formData.get('username');
-
-        console.log(username);
+    const onUserNameChange = (e) => {
+        setUsername(e.target.value);
     };
 
     return (
         <div className="App">
             <header className="App-header">
-                <form onSubmit={onSubmit}>
+                <form>
                     <div>
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" id="username" defaultValue={username} />
+                        <input type="text" name="username" id="username" value={username} onChange={onUserNameChange} />
                     </div>
 
                     <div>
