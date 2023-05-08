@@ -12,6 +12,10 @@ export default function UserList({
     onUserCreateSubmit,
     onUserDeleteClick,
     onUserUpdateSubmit,
+    formValues,
+    formChangeHandler,
+    formErrors,
+    validateForm,
 }) {
     const [selectedUser, setSelectedUser] = useState(null)
     const [showAddUser, setShowAddUser] = useState(false)
@@ -63,9 +67,9 @@ export default function UserList({
     return (
         <>
             {selectedUser && <UserDetails {...selectedUser} onCloseHandler={onCloseHandler} />}
-            {showAddUser && <CreateUserPage onCloseHandler={onCloseHandler} onUserCreateSubmit={onUserCreateSubmitHandler} />}
+            {showAddUser && <CreateUserPage onCloseHandler={onCloseHandler} onUserCreateSubmit={onUserCreateSubmitHandler} formValues={formValues} formChangeHandler={formChangeHandler} formErrors={formErrors} validateForm={validateForm}/>}
             {deleteUser && <UserDelete onCloseHandler={onCloseHandler} onDeleteHandler={onDeleteHandler} />}
-            {showEditUser && <CreateUserPage user={showEditUser} onCloseHandler={onCloseHandler} onUserCreateSubmit={onUserUpdateSubmitHandler}/>}
+            {showEditUser && <CreateUserPage user={showEditUser} onCloseHandler={onCloseHandler} onUserCreateSubmit={onUserUpdateSubmitHandler} formValues={formValues} formChangeHandler={formChangeHandler} formErrors={formErrors} validateForm={validateForm}/>}
             <div className="table-wrapper">
 
                 {/* <div className="loading-shade">
