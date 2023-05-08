@@ -1,7 +1,8 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 function App() {
+    const ref = useRef();
     const [hobbies, setHobbies] = useState({});
 
     const [values, setValues] = useState({
@@ -16,6 +17,10 @@ function App() {
     const onSubmitHandler = (e) => {
         e.preventDefault();
     }
+ 
+    useEffect(() => {
+        ref.current.value = values.username
+    }, [values.username]);
 
     const onChangeHandler = (e) => {
         setValues(state => ({...state, [e.target.name]: e.target.value}));
@@ -84,6 +89,13 @@ function App() {
                         <input type="checkbox" name='hobbies' id='gaming' value="gaming" onChange={onHobbiesChange} checked={hobbies["gaming"] || false} />
                     </div>
 
+                    <div>
+                        <label htmlFor="uncontrolled">Uncontrolled
+                        <input type="text" name='uncontrolled' id='uncontrolled' ref={ref}/>
+                        </label>
+                        </div>
+                    <input type="text" />        
+                    
                     <div>
                         <input type="submit" value="Send" />
                     </div>
