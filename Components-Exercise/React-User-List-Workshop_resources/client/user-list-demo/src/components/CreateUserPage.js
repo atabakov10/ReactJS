@@ -28,7 +28,7 @@ export default function CreateUserPage({
                             <label htmlFor="firstName">First name</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-user"></i></span>
-                                <input id="firstName" name="firstName" type="text" value={formValues.firstName} onChange={formChangeHandler} onBlur={validateForm}/>
+                                <input id="firstName" name="firstName" type="text" value={formValues.firstName} onChange={formChangeHandler} onBlur={validateForm} style={formErrors.firstName ? {borderColor: "red"} : {}}/>
                             </div>
                             {formErrors.firstName &&
                                 <p className="form-error">
@@ -41,7 +41,7 @@ export default function CreateUserPage({
                             <label htmlFor="lastName">Last name</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-user"></i></span>
-                                <input id="lastName" name="lastName" type="text" value={formValues.lastName} onChange={formChangeHandler} onBlur={validateForm}/>
+                                <input id="lastName" name="lastName" type="text" value={formValues.lastName} onChange={formChangeHandler} onBlur={validateForm} style={formErrors.firstName ? {borderColor: "red"} : {}}/>
                             </div>
                             {formErrors.lastName &&
                                 <p className="form-error">
