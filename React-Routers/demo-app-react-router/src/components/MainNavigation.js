@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import Navigation from './Navigation'
+import { Navigation} from './Navigation'
 import styles from './Navigation.module.css';
 
 export default function MainNavigation() {
