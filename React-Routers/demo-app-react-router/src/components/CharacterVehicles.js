@@ -4,32 +4,29 @@ import Loader from './Loader';
 
 const baseUrl = 'https://swapi.dev/api'
 
-export default function CharacterFilms() {
-    const [films, setFilms] = useState([])
+export default function CharacterVehicles() {
+    const [vehicles, setVehicles] = useState([]);
     const { characterId } = useParams();
     const [loader, setLoader] = useState(false);
 
     useEffect(() => {
-        fetch(`${baseUrl}/films`)
+        fetch(`${baseUrl}/vehicles`)
             .then((response) => response.json())
             .then(data => {
-                setFilms(data.results);
+                setVehicles(data.results);
                 setLoader(true);
             });
     }, [characterId]);
 
-
     return (
-        <>
-            <h3>Character films</h3>
-
-            {loader ? (films.map(x => {
+    <>
+    <h3>Character vehicles</h3>
+    {loader ? (vehicles.map(x => {
                 const id = x.url.split('/').filter(x => x).pop();
 
-                return <li key={id}><Link to={`/films/${id}`}>{x.title}</Link></li>
+                return <li key={id}><Link to={`/vehicles/${id}`}>{x.name}</Link></li>
             })) : <Loader />
             }
-            
-        </>
+    </>
     );
 }
