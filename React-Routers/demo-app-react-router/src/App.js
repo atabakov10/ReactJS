@@ -6,6 +6,9 @@ import NotFound from './components/NotFound';
 import MainNavigation from './components/MainNavigation';
 import CharacterList from './components/CharacterList';
 import Character from './components/Character';
+import Film from './components/Film';
+import Vehicle from './components/Vehicle';
+import Starship from './components/Starship';
 
 function App() {
     return (
@@ -18,6 +21,9 @@ function App() {
                     <Route path='/about/*' element={<About />} />
                     <Route path='/characters' element={<CharacterList />} />
                     <Route path='/characters/:characterId/*' element={<Character />} />
+                    <Route path='/films/:filmId/*' element={<Film />}/>
+                    <Route path='/vehicles/:vehicleId/*' element={<Vehicle />}/>
+                    <Route path='/starships/:starshipId/*' element={<Starship />}/>
                 </Routes>
             </header>
         </div>
