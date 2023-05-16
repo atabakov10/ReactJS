@@ -12,7 +12,7 @@ export default function CreateUserPage({
         <div className="modal">
             <div className="user-container">
                 <header className="headers">
-                    <h2>Edit User/Add User</h2>
+                    <h2>Edit Product/Add Product</h2>
                     <button className="btn close" onClick={onCloseHandler}>
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                             className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -22,10 +22,10 @@ export default function CreateUserPage({
                         </svg>
                     </button>
                 </header>
-                <form onSubmit={(e) => onUserCreateSubmit(e, user?._id)}>
+                <form onSubmit={(e) => onUserCreateSubmit(e, user?.id)}>
                     <div className="form-row">
                         <div className="form-group">
-                            <label htmlFor="firstName">First name</label>
+                            <label htmlFor="firstName">Name</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-user"></i></span>
                                 <input id="firstName" name="firstName" type="text" value={formValues.firstName} onChange={formChangeHandler} onBlur={validateForm} style={formErrors.firstName ? {borderColor: "red"} : {}}/>
@@ -38,10 +38,10 @@ export default function CreateUserPage({
 
                         </div>
                         <div className="form-group">
-                            <label htmlFor="lastName">Last name</label>
+                            <label htmlFor="lastName">Price</label>
                             <div className="input-wrapper">
-                                <span><i className="fa-solid fa-user"></i></span>
-                                <input id="lastName" name="lastName" type="text" value={formValues.lastName} onChange={formChangeHandler} onBlur={validateForm} style={formErrors.firstName ? {borderColor: "red"} : {}}/>
+                                <span><i className="fa-solid fa-dollar-sign"></i></span>
+                                <input id="lastName" name="lastName" type="number" step="0.01" oninput="this.value = this.value.replace(',', '.')"/>
                             </div>
                             {formErrors.lastName &&
                                 <p className="form-error">

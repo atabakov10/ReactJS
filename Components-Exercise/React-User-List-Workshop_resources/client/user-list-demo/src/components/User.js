@@ -1,13 +1,11 @@
 import { formatDate } from "../utils/dateUtils"
 
 export default function User({
-    _id,
-    firstName,
-    lastName,
-    email,
+    id,
+    name,
+    price,
+    category,
     imageUrl,
-    createdAt,
-    phoneNumber,
     onInfoClick,
     onDeleteClick,
     onEditClick,
@@ -15,16 +13,14 @@ export default function User({
     return (<tr>
         <td>
             <img src={imageUrl}
-                alt={`${firstName} ${lastName}`} className="image" />
+                alt={`${name}`} className="image" />
         </td>
-        <td>{firstName}</td>
-        <td>{lastName}</td>
-        <td>{email}</td>
-        <td>{phoneNumber}</td>
-        <td>{formatDate(createdAt)}</td>
+        <td>{name}</td>
+        <td>{`${price}$`}</td>
+        <td>{category}</td>
 
         <td className="actions">
-            <button className="btn edit-btn" title="Edit" onClick={() => onEditClick(_id)}>
+            <button className="btn edit-btn" title="Edit" onClick={() => onEditClick(id)}>
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                     className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 532 512">
@@ -33,7 +29,7 @@ export default function User({
                     </path>
                 </svg>
             </button>
-            <button className="btn delete-btn" title="Delete" onClick={() => onDeleteClick(_id)}>
+            <button className="btn delete-btn" title="Delete" onClick={() => onDeleteClick(id)}>
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                     className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                     <path fill="currentColor"
@@ -41,7 +37,7 @@ export default function User({
                     </path>
                 </svg>
             </button>
-            <button className="btn info-btn" title="Info" onClick={() => onInfoClick(_id)}>
+            <button className="btn info-btn" title="Info" onClick={() => onInfoClick(id)}>
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                     className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="-150 0 512 612">

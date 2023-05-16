@@ -1,15 +1,15 @@
 import {formatDate} from '../utils/dateUtils';
 
 export default function UserDetails({
-    _id,
-    firstName,
-    lastName,
-    email,
+    id,
+    name,
+    price,
+    description,
     imageUrl,
-    createdAt,
-    updatedAt,
-    phoneNumber,
-    address,
+    categoryId,
+    categoryName,
+    sellerId,
+    sellerName,
     onCloseHandler,
 }) {
     return (
@@ -18,7 +18,7 @@ export default function UserDetails({
             <div className="modal">
                 <div className="detail-container">
                     <header className="headers">
-                        <h2>User Detail</h2>
+                        <h2>User Details</h2>
                         <button className="btn close" onClick={onCloseHandler}>
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
                                 className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
@@ -30,24 +30,24 @@ export default function UserDetails({
                     </header>
                     <div className="content">
                         <div className="image-container">
-                            <img src={imageUrl} alt={`${firstName} ${lastName}`}
+                            <img src={imageUrl} alt={`${name}`}
                                 className="image" />
                         </div>
                         <div className="user-details">
-                            <p>User Id: <strong>{_id}</strong></p>
+                            <p>User Id: <strong>{id}</strong></p>
                             <p>
-                                Full Name:
-                                <strong> {firstName} {lastName} </strong>
+                                Name:
+                                <strong> {name} </strong>
                             </p>
-                            <p>Email: <strong>{email}</strong></p>
-                            <p>Phone Number: <strong>{phoneNumber}</strong></p>
+                            <p>Price: <strong>{price}</strong></p>
                             <p>
-                                Address:
-                                <strong> {`${address.country}, ${address.city}, ${address.street}, ${address.streetNumber}`} </strong>
+                                Description:
+                                <strong> {description} </strong>
                             </p>
-
-                            <p>Created on: <strong>{formatDate(createdAt)}</strong></p>
-                            <p>Modified on: <strong>{formatDate(updatedAt)}</strong></p>
+                            <p>Category Id: <strong>{categoryId}</strong></p>
+                            <p>Category Name: <strong>{categoryName}</strong></p>
+                            <p>Seller Id: <strong>{sellerId}</strong></p>
+                            <p>Seller Name: <strong>{sellerName}</strong></p>
                         </div>
                     </div>
                 </div>
