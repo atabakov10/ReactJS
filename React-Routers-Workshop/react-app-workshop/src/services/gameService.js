@@ -9,14 +9,20 @@ export const getAll = async () => {
     return games;
 }
 
+export const getOne = async (gameId) => {
+    const result = await request.get(baseUrl + "/" + gameId);
+
+    return result;
+}
+
 export const create = async (data) => {
     const result = await request.post(baseUrl, data);
 
     return result;
 }
 
-export const getOne = async (gameId) => {
-    const result = await request.get(baseUrl + "/" + gameId);
+export const addComment = async (gameId, data) => {
+    const result = await request.post(`${baseUrl}/${gameId}/comments`, data);
 
     return result;
 }
