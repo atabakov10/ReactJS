@@ -7,11 +7,8 @@ export default function TodoItem({
     _id,
 }) {
     return (
-        {
-            isCompleted: isCompleted === false ? <ListGroup.Item action>
-                {text}
-            </ListGroup.Item> : ""
-        }
-
+        <ListGroup.Item action>
+            {text}
+        </ListGroup.Item>
     )
 }
