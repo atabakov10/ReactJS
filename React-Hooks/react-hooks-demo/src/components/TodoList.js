@@ -8,7 +8,6 @@ export default function TodoList({
     todos,
     baseUrl,
     setTodos,
-    onTodoDeleteClick,
 }) {
     const [show, setShow] = useState(false);
     const onShow = () => setShow(true);
@@ -33,7 +32,7 @@ export default function TodoList({
         <div style={{ width: '30%', margin: '10px auto' }}>
             <h1>Todo List</h1>
             <ListGroup style={{ marginBottom: '10px' }}>
-                {todos.map(todo => (<TodoItem key={todo._id} {...todo} onTodoDeleteClick={onTodoDeleteClick}/>))}
+                {todos.map(todo => (<TodoItem key={todo._id} {...todo} />))}
             </ListGroup>
             <Button variant="primary" onClick={onShow}>Add</Button>{' '}
             <AddTodoModal show={show} setShow={setShow} onTodoAdd={onTodoAdd} />

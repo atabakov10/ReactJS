@@ -1,4 +1,5 @@
 import './App.css';
+import { TodoContext } from './contexts/todoContext';
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
@@ -22,12 +23,18 @@ function App() {
         setTodos(state => state.filter(x => x._id !== todoId));
     }
 
-    return (
-        <div>
-            <Header />
+    const contextValue = {
+        onTodoDeleteClick,
+    }
 
-            <TodoList todos={todos} baseUrl={baseUrl} setTodos={setTodos} onTodoDeleteClick={onTodoDeleteClick} />
-        </div>
+    return (
+        <TodoContext.Provider value={contextValue}>
+            <div>
+                <Header />
+
+                <TodoList todos={todos} baseUrl={baseUrl} setTodos={setTodos} />
+            </div>
+        </TodoContext.Provider>
     );
 }
 
