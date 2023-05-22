@@ -11,14 +11,14 @@ const LoginFormKeys = {
 export default function Login() {
     const { onLoginSubmit } = useContext(AuthContext);
 
-    const {values, changeHandler} = useForm({
+    const {values, changeHandler, onSubmit} = useForm({
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
     }, onLoginSubmit);
 
     return ( 
         <section id="login-page" className="auth">
-            <form id="login" onSubmit={onLoginSubmit}>
+            <form id="login" method='POST' onSubmit={onSubmit}>
 
                 <div className="container">
                     <div className="brand-logo"></div>
