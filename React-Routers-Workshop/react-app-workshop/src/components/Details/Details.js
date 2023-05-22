@@ -59,8 +59,8 @@ function Details() {
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
+                    <a href="/#" className="button">Edit</a>
+                    <a href="/#" className="button">Delete</a>
                 </div>
             </div>
 
