@@ -104,7 +104,7 @@ function App() {
                         <Route path='/register' element={<Register />} />
                         <Route path='/create-game' element={<CreateGame onCreateGameSubmit={onCreateGameSubmit} />} />
                         <Route path='/catalog' element={<Catalog games={games} />} />
-                        <Route path='/catalog/:gameId' element={<GameDetails setGames={setGames}/>} />
+                        <Route path='/catalog/:gameId' element={<GameDetails setGaes={setGames}/>} />
                         <Route path='/catalog/:gameId/edit' element={<EditGame onGameEditSubmit={onGameEditSubmit} />} />
                     </Routes>
                 </main>
