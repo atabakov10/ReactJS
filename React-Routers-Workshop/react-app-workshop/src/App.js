@@ -8,15 +8,18 @@ import Details from "./components/Details/Details";
 import Catalogue from "./components/Catalogue/Catalogue";
 import { Route, Routes, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
-import * as gameService from "./services/gameService";
+import { gameServiceFactory } from "./services/gameService";
+import { authServiceFactory } from "./services/authService";
 import AuthContext from "./contexts/AuthContext";
-import * as authService from "./services/authService";
 import { Logout } from "./components/Logout/Logout";
+import { useService } from "./hooks/useService";
 
 function App() {
     const navigate = useNavigate();
     const [games, setGames] = useState([]);
     const [auth, setAuth] = useState({});
+    const gameService = gameServiceFactory(auth.accessToken)
+    const authService = authServiceFactory(auth.accessToken)
 
     useEffect(() => {
         gameService.getAll()
