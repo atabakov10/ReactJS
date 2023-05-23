@@ -12,7 +12,6 @@ import { gameServiceFactory } from "./services/gameService";
 import { authServiceFactory } from "./services/authService";
 import AuthContext from "./contexts/AuthContext";
 import { Logout } from "./components/Logout/Logout";
-import { useService } from "./hooks/useService";
 
 function App() {
     const navigate = useNavigate();
@@ -26,7 +25,7 @@ function App() {
             .then(result => {
                 setGames(result);
             })
-    }, [])
+    }, [gameService])
 
     const onCreateGameSubmit = async (data) => {
         const newGame = await gameService.create(data);
@@ -91,7 +90,7 @@ function App() {
                 <main id="main-content">
 
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Home games={games}/>} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/register" element={<Register />} />
