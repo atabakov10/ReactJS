@@ -1,5 +1,7 @@
-export const Footer = () => {
-    return (
-        <div>All rights reserved &copy;</div>
-    );
-};
+import React from 'react'
+
+export default function Footer() {
+  return (
+    <div>Footer</div>
+  )
+}

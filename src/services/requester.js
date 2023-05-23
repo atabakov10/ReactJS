@@ -8,16 +8,14 @@ const request = async (method, token, url, data) => {
             options.headers = {
                 'content-type': 'application/json',
             };
-
             options.body = JSON.stringify(data);
         }
     }
-
     if (token) {
-        options.headers = {
+        options.headers= {
             ...options.headers,
             'X-Authorization': token,
-        };
+        }
     }
 
     const response = await fetch(url, options);
@@ -40,7 +38,7 @@ export const requestFactory = (token) => {
         get: request.bind(null, 'GET', token),
         post: request.bind(null, 'POST', token),
         put: request.bind(null, 'PUT', token),
-        patch: request.bind(null, 'PATCH', token),
         delete: request.bind(null, 'DELETE', token),
+        patch: request.bind(null, 'PATCH', token),
     }
 };
