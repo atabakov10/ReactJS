@@ -109,6 +109,7 @@ function App() {
                     </Routes>
                 </main>
 
+
                 <Footer />
             </div>
         </AuthContext.Provider>
