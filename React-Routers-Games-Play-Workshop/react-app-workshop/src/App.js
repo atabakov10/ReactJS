@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
+import { withAuth } from './hoc/withAuth';
+
 import { gameServiceFactory } from './services/gameService';
 import { AuthProvider } from './contexts/AuthContext';
 
@@ -36,6 +38,8 @@ function App() {
         navigate('/catalog');
     };
 
+    const EnhancedLogin = withAuth(Login)
+
     const onGameEditSubmit = async (values) => {
         const result = await gameService.edit(values._id, values);
 
@@ -51,8 +55,8 @@ function App() {
 
                 <main id="main-content">
                     <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/login' element={<Login />} />
+                        <Route path='/' element={<Home games={games}/>} />
+                        <Route path='/login' element={<EnhancedLogin />} />
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/create-game' element={<CreateGame onCreateGameSubmit={onCreateGameSubmit} />} />
