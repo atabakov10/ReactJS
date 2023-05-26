@@ -30,7 +30,7 @@ export const GameDetails = ({
             username,
             comment,
         });
-
+        
         setGame(state => ({ ...state, comments: { ...state.comments, [result._id]: result } }));
         setUsername('');
         setComment('');
