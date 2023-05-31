@@ -7,20 +7,14 @@ import * as commentService from '../../services/commentService';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 import { AddComment } from './AddComment/AddComment';
-
-const gameReducer = (value) => {
-    console.log(value);
-
-    return value;
-}
+import { gameReducer } from '../../reducers/gameReducer';
 
 export const GameDetails = ({
     setGames,
 }) => {
     const { gameId } = useParams();
     const { userId, isAuthenticated, userEmail } = useAuthContext();
-    const [game, setGame] = useState({});
-    const [state, dispatch] = useReducer(gameReducer, {});
+    const [game, dispatch] = useReducer(gameReducer, {});
     const gameService = useService(gameServiceFactory)
     const navigate = useNavigate();
 
@@ -29,34 +23,22 @@ export const GameDetails = ({
             gameService.getOne(gameId),
             commentService.getAll(gameId)
         ]).then(([gameData, comments]) => {
-            dispatch('Pesho');
-
-            setGame({
+            const gameState = {
                 ...gameData,
-                comments
-            });
+                comments,
+            }
+            dispatch({type: 'GAME_FETCH', payload: gameState}); 
         })
     }, [gameId]);
 
     const onCommentSubmit = async (values) => {
         const response = await commentService.create(gameId, values.comment);
-        console.log(response);
-        setGame(state => ({
-            ...state,
-            comments: [
-                ...state.comments,
-                {
-                    ...response,
-                    author: {
-                        email: userEmail,
-                    }
-                }
-            ]
-        }));
 
-        // setGame(state => ({ ...state, comments: { ...state.comments, [result._id]: result } }));
-        // setUsername('');
-        // setComment('');
+        dispatch({
+            type: 'ADD_COMMENT',
+            payload: response,
+            userEmail,
+        })
     };
 
     const isOwner = game._ownerId === userId;
